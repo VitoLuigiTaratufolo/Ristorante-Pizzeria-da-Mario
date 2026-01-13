@@ -1,46 +1,52 @@
 ---
 import Header from '../../components/Header.astro';
+import '../../styles/global.css';
 
-// Esempio di dati (poi potremo spostarli in un file esterno)
-const pizze = [
-  { nome: "Margherita", ingredienti: "Pomodoro, mozzarella, basilico", prezzo: "7.00" },
-  { nome: "Diavola", ingredienti: "Pomodoro, mozzarella, salame piccante", prezzo: "8.50" },
-  { nome: "Bufala", ingredienti: "Pomodoro, mozzarella di bufala, basilico", prezzo: "9.50" }
+const categorie = [
+  {
+    titolo: "Le Classiche",
+    pizze: [
+      { nome: "Margherita", desc: "Pomodoro San Marzano, mozzarella fior di latte, basilico fresco, olio EVO", prezzo: "7.50" },
+      { nome: "Marinara", desc: "Pomodoro, aglio, origano, olio EVO", prezzo: "6.00" },
+      { nome: "Diavola", desc: "Pomodoro, mozzarella, salame piccante, olive nere", prezzo: "9.00" }
+    ]
+  },
+  {
+    titolo: "Le Speciali",
+    pizze: [
+      { nome: "Pistacchiosa", desc: "Pesto di pistacchio, mozzarella, mortadella Bologna, granella di pistacchio", prezzo: "13.00" },
+      { nome: "Tartufata", desc: "Crema di tartufo, funghi porcini, mozzarella, scaglie di parmigiano", prezzo: "14.50" }
+    ]
+  }
 ];
 ---
 <html lang="it">
-  <head>
-    <title>Il Nostro Menu | Pizzeria da Mario</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
-
-    <style>
-        h1, h2 { font-family: 'Playfair Display', serif; }
-        body { font-family: 'Inter', sans-serif; }
-    </style>
-  </head>
-  <body class="bg-gray-50">
+<head>
+    <meta charset="UTF-8" />
+    <title>Il Menu | Pizzeria Da Mario</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="bg-stone-50">
     <Header lang="it" />
-    
-    <main class="max-w-3xl mx-auto mt-10 p-4">
-      <h1 class="text-4xl font-bold text-center mb-10 text-red-600">Le Nostre Pizze</h1>
-        <div class="grid md:grid-cols-2 gap-8">
-            {pizze.map((pizza) => (
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="text-xl font-bold text-gray-800">{pizza.nome}</h3>
-                        <span class="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded">BIO</span>
-                    </div>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-4">{pizza.ingredienti}</p>
-                    <div class="text-lg font-black text-red-600">€ {pizza.prezzo}</div>
+    <main class="max-w-4xl mx-auto py-16 px-4">
+        <h1 class="text-5xl font-black text-center mb-16 text-stone-800">Il Nostro Menu</h1>
+        
+        {categorie.map(cat => (
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold text-red-600 border-b-2 border-red-100 pb-2 mb-8 uppercase tracking-widest">{cat.titolo}</h2>
+                <div class="grid gap-8">
+                    {cat.pizze.map(p => (
+                        <div class="flex justify-between items-start group">
+                            <div class="max-w-2xl">
+                                <h3 class="text-xl font-bold group-hover:text-red-600 transition">{p.nome}</h3>
+                                <p class="text-stone-500 italic text-sm mt-1">{p.desc}</p>
+                            </div>
+                            <span class="text-xl font-black text-stone-800 italic">€{p.prezzo}</span>
+                        </div>
+                    ))}
                 </div>
-            ))}
-        </div>
-
-      <div class="mt-12 p-6 bg-red-50 rounded-xl text-center">
-        <p class="text-sm text-gray-700">Per allergie o intolleranze, chiedete pure al nostro staff.</p>
-      </div>
+            </div>
+        ))}
     </main>
-  </body>
+</body>
 </html>

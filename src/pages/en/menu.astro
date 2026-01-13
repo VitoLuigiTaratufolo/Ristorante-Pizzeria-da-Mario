@@ -1,38 +1,52 @@
 ---
 import Header from '../../components/Header.astro';
+import '../../styles/global.css';
 
-// Esempio di dati (poi potremo spostarli in un file esterno)
-const pizze = [
-  { nome: "Margherita", ingredienti: "Pomodoro, mozzarella, basilico", prezzo: "7.00" },
-  { nome: "Diavola", ingredienti: "Pomodoro, mozzarella, salame piccante", prezzo: "8.50" },
-  { nome: "Bufala", ingredienti: "Pomodoro, mozzarella di bufala, basilico", prezzo: "9.50" }
+const categories = [
+  {
+    title: "Classic Pizzas",
+    items: [
+      { name: "Margherita", desc: "San Marzano tomato, fior di latte mozzarella, fresh basil, EVO oil", price: "7.50" },
+      { name: "Marinara", desc: "Tomato, garlic, oregano, EVO oil", price: "6.00" },
+      { name: "Diavola", desc: "Tomato, mozzarella, spicy salami, black olives", price: "9.00" }
+    ]
+  },
+  {
+    title: "Gourmet Selection",
+    items: [
+      { name: "Pistachio", desc: "Pistachio pesto, mozzarella, Bologna mortadella, crushed pistachios", price: "13.00" },
+      { name: "Truffle", desc: "Truffle cream, porcini mushrooms, mozzarella, parmesan shavings", price: "14.50" }
+    ]
+  }
 ];
 ---
-<html lang="it">
-  <head>
-    <title>Il Nostro Menu | Pizzeria da Mario</title>
-  </head>
-  <body class="bg-gray-50">
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>The Menu | Pizzeria Da Mario</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="bg-stone-50">
     <Header lang="en" />
-    
-    <main class="max-w-3xl mx-auto mt-10 p-4">
-      <h1 class="text-4xl font-bold text-center mb-10 text-red-600">Le Nostre Pizze</h1>
-      
-      <div class="grid gap-6">
-        {pizze.map((pizza) => (
-          <div class="flex justify-between items-center border-b border-gray-200 pb-4">
-            <div>
-              <h3 class="text-xl font-bold">{pizza.nome}</h3>
-              <p class="text-gray-600 italic">{pizza.ingredienti}</p>
+    <main class="max-w-4xl mx-auto py-16 px-4">
+        <h1 class="text-5xl font-black text-center mb-16 text-stone-800">Our Menu</h1>
+        
+        {categories.map(cat => (
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold text-red-600 border-b-2 border-red-100 pb-2 mb-8 uppercase tracking-widest">{cat.title}</h2>
+                <div class="grid gap-8">
+                    {cat.items.map(p => (
+                        <div class="flex justify-between items-start group">
+                            <div class="max-w-2xl">
+                                <h3 class="text-xl font-bold group-hover:text-red-600 transition">{p.name}</h3>
+                                <p class="text-stone-500 italic text-sm mt-1">{p.desc}</p>
+                            </div>
+                            <span class="text-xl font-black text-stone-800 italic">€{p.price}</span>
+                        </div>
+                    ))}
+                </div>
             </div>
-            <div class="text-xl font-bold text-red-700">€ {pizza.prezzo}</div>
-          </div>
         ))}
-      </div>
-
-      <div class="mt-12 p-6 bg-red-50 rounded-xl text-center">
-        <p class="text-sm text-gray-700">Per allergie o intolleranze, chiedete pure al nostro staff.</p>
-      </div>
     </main>
-  </body>
+</body>
 </html>

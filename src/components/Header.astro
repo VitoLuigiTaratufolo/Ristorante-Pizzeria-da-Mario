@@ -1,26 +1,47 @@
 ---
 const { lang } = Astro.props;
-const t = {
-  it: { menu: 'Menu', prenota: 'Prenota Tavolo', gallery: 'Foto' },
-  en: { menu: 'Menu', prenota: 'Book a Table', gallery: 'Gallery' }
+
+// Definiamo i link in base alla lingua attuale
+const navLinks = {
+  it: { 
+    menu: "/it/menu", 
+    prenota: "/it/prenota", 
+    switchLabel: "EN 🇬🇧", 
+    switchLink: "/en/",
+    labelMenu: "Menu",
+    labelPrenota: "Prenota Tavolo"
+  },
+  en: { 
+    menu: "/en/menu", 
+    prenota: "/en/book", 
+    switchLabel: "IT 🇮🇹", 
+    switchLink: "/it/",
+    labelMenu: "Menu",
+    labelPrenota: "Book a Table"
+  }
 };
-const translations = lang === 'en' ? t.en : t.it;
+
+const t = lang === 'en' ? navLinks.en : navLinks.it;
 ---
+
 <nav class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between h-20 items-center">
-      <div class="flex-shrink-0 flex items-center">
-        <span class="text-2xl font-black tracking-tighter text-red-600">PIZZERIA DA MARIO</span>
-      </div>
-      
-      <div class="hidden md:flex space-x-8 items-center">
-        <a href="/it/menu" class="text-gray-700 hover:text-red-600 font-medium transition">Menu</a>
-        <a href="/it/foto" class="text-gray-700 hover:text-red-600 font-medium transition">Foto</a>
-        <a href="/en/" class="text-sm font-bold bg-gray-100 px-3 py-1 rounded-full text-gray-600">EN 🇬🇧</a>
-        <a href="/it/prenota" class="bg-red-600 text-white px-6 py-2.5 rounded-full font-bold hover:bg-red-700 transition shadow-lg shadow-red-200">
-          Prenota Tavolo
+  <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
+    <a href={lang === 'en' ? '/en/' : '/it/'} class="text-2xl font-black text-red-600 tracking-tighter">
+      PIZZERIA DA MARIO
+    </a>
+    
+    <ul class="flex gap-6 items-center font-bold text-gray-700">
+      <li><a href={t.menu} class="hover:text-red-600 transition">{t.labelMenu}</a></li>
+      <li>
+        <a href={t.switchLink} class="bg-gray-100 px-3 py-1 rounded-full text-xs hover:bg-gray-200 transition">
+          {t.switchLabel}
         </a>
-      </div>
-    </div>
+      </li>
+      <li>
+        <a href={t.prenota} class="bg-red-600 text-white px-5 py-2 rounded-full hover:bg-red-700 transition shadow-lg shadow-red-200">
+          {t.labelPrenota}
+        </a>
+      </li>
+    </ul>
   </div>
 </nav>
