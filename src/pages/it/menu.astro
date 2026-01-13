@@ -4,8 +4,15 @@ import '../../styles/global.css';
 
 const categorie = [
   {
+    titolo: "Dalla Cucina",
+    piatti: [ // Usiamo lo stesso nome variabile per non rompere il loop sotto
+      { nome: "Spaghetto allo Scoglio", desc: "Frutti di mare freschi, pomodorino e prezzemolo", prezzo: "15.00" },
+      { nome: "Tagliata di Manzo", desc: "Rucola, grana e riduzione di aceto balsamico", prezzo: "18.00" }
+    ]
+  },
+  {
     titolo: "Le Classiche",
-    pizze: [
+    piatti: [
       { nome: "Margherita", desc: "Pomodoro San Marzano, mozzarella fior di latte, basilico fresco, olio EVO", prezzo: "7.50" },
       { nome: "Marinara", desc: "Pomodoro, aglio, origano, olio EVO", prezzo: "6.00" },
       { nome: "Diavola", desc: "Pomodoro, mozzarella, salame piccante, olive nere", prezzo: "9.00" }
@@ -13,7 +20,7 @@ const categorie = [
   },
   {
     titolo: "Le Speciali",
-    pizze: [
+    piatti: [
       { nome: "Pistacchiosa", desc: "Pesto di pistacchio, mozzarella, mortadella Bologna, granella di pistacchio", prezzo: "13.00" },
       { nome: "Tartufata", desc: "Crema di tartufo, funghi porcini, mozzarella, scaglie di parmigiano", prezzo: "14.50" }
     ]
@@ -23,7 +30,7 @@ const categorie = [
 <html lang="it">
 <head>
     <meta charset="UTF-8" />
-    <title>Il Menu | Pizzeria Da Mario</title>
+    <title>Il Menu | Ristorante Pizzeria Da Mario</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body class="bg-stone-50">
@@ -35,7 +42,7 @@ const categorie = [
             <div class="mb-12">
                 <h2 class="text-2xl font-bold text-red-600 border-b-2 border-red-100 pb-2 mb-8 uppercase tracking-widest">{cat.titolo}</h2>
                 <div class="grid gap-8">
-                    {cat.pizze.map(p => (
+                    {cat.piatti.map(p => (
                         <div class="flex justify-between items-start group">
                             <div class="max-w-2xl">
                                 <h3 class="text-xl font-bold group-hover:text-red-600 transition">{p.nome}</h3>

@@ -1,15 +1,26 @@
 ---
 import Header from '../../components/Header.astro';
-import '../../styles/global.css'; // Se hai un file CSS globale, importalo qui
+import '../../styles/global.css';
+
+// Elenco dei file nella cartella public/immagini/immaginiCentrali/
+// Aggiungi qui i nomi dei file man mano che li inserisci nella cartella
+const nomiImmagini = [
+  'cialdamaterana.jpg',
+  'faveecicorie.jpg',
+  'pizzahero.jpg',
+  'orecchiettefunghiesalsiccia.jpg',
+  'pizzeMultiple.png'
+];
+
+const images = nomiImmagini.map(nome => `/immagini/immaginiCentrali/${nome}`);
 ---
 
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pizzeria Da Mario | Vera Pizza Napoletana</title>
+    <title>Da Mario | Ristorante Tipico Materano & Pizzeria</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    
     <style>
       h1, h2 { font-family: 'Playfair Display', serif; }
       body { font-family: 'Inter', sans-serif; }
@@ -20,67 +31,65 @@ import '../../styles/global.css'; // Se hai un file CSS globale, importalo qui
     <Header lang="it" />
 
     <main>
-      <section class="relative h-[80vh] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-          <img 
-            src="/immagini/pizza-hero.jpg" 
-            alt="Pizza appena sfornata" 
-            class="w-full h-full object-cover brightness-[0.4]"
-          />
+      <section class="relative h-[85vh] flex items-center justify-center overflow-hidden bg-stone-900">
+        
+        <div class="absolute inset-0 z-0" id="carousel">
+          {images.map((src, index) => (
+            <img 
+              src={src} 
+              class={`absolute inset-0 w-full h-full object-cover brightness-[0.45] transition-opacity duration-[1500ms] ease-in-out ${index === 0 ? 'opacity-100' : 'opacity-0'}`}
+              alt="Atmosfera Ristorante Pizzeria Da Mario Matera"
+            />
+          ))}
         </div>
 
-        <div class="relative z-10 text-center px-4 max-w-4xl">
-          <span class="text-red-500 font-bold uppercase tracking-widest mb-4 block">Tradizione dal 1990</span>
-          <h1 class="text-5xl md:text-7xl text-white font-black mb-6 leading-tight">
-            La vera pizza cotta nel <span class="text-red-500">forno a legna</span>
+        <div class="relative z-10 text-center px-4 max-w-5xl">
+          <span class="text-red-500 font-bold uppercase tracking-[0.3em] mb-4 block">
+            Tradizione Materana dal 1990
+          </span>
+          <h1 class="text-5xl md:text-7xl text-white font-black mb-6 leading-tight text-shadow-lg">
+            Il gusto autentico della <span class="text-red-600">Cucina Lucana</span>
           </h1>
-          <p class="text-xl text-stone-200 mb-10 max-w-2xl mx-auto font-light">
-            Un'esperienza autentica con oltre 170 posti a sedere nel cuore della città. 
-            Ingredienti freschi, passione napoletana.
+          <p class="text-xl text-stone-200 mb-10 max-w-3xl mx-auto font-light leading-relaxed">
+            Dalle ricette storiche dei Sassi di Matera alla pizza cotta nel forno a legna. 
+            Un'esperienza per 170 ospiti nel cuore della tradizione.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/it/prenota" class="bg-red-600 hover:bg-red-700 text-white px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-red-900/20">
+            <a href="/it/prenota" class="bg-red-600 text-white px-10 py-4 rounded-full font-bold hover:bg-red-700 transition transform hover:scale-105 shadow-xl shadow-red-900/40">
               Prenota un Tavolo
             </a>
-            <a href="/it/menu" class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-10 py-4 rounded-full font-bold transition-all">
+            <a href="/it/menu" class="bg-white/10 backdrop-blur-md text-white border border-white/30 px-10 py-4 rounded-full font-bold hover:bg-white/20 transition">
               Scopri il Menu
             </a>
           </div>
         </div>
       </section>
 
-      <section class="py-20 px-4 max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 class="text-4xl font-bold mb-6 text-stone-800">Ampie sale per ogni occasione</h2>
-            <p class="text-lg text-stone-600 mb-6 leading-relaxed">
-              Che sia una cena romantica o una grande festa di famiglia, il nostro locale offre **170 posti a sedere** suddivisi in sale accoglienti e climatizzate. 
-            </p>
-            <ul class="space-y-4 text-stone-700 font-medium">
-              <li class="flex items-center gap-3">
-                <span class="text-red-500">✔</span> Forno a legna tradizionale
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="text-red-500">✔</span> Ampio parcheggio gratuito
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="text-red-500">✔</span> Area bimbi e spazio eventi
-              </li>
-            </ul>
-          </div>
-          <div class="rounded-3xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
-            <img src="/immagini/interno-locale.jpg" alt="Interno della pizzeria" class="w-full h-full object-cover" />
-          </div>
-        </div>
+      <section class="py-20 px-4 max-w-7xl mx-auto text-center">
+        <h2 class="text-4xl font-bold mb-6 text-stone-800">Oltre la Pizza, la Storia</h2>
+        <p class="text-lg text-stone-600 max-w-3xl mx-auto leading-relaxed italic">
+          "Non siamo solo una pizzeria. Portiamo in tavola l'anima di Matera, dai Peperoni Cruschi alle orecchiette fatte in casa, serviti in un ambiente spazioso e accogliente."
+        </p>
       </section>
     </main>
 
-    <footer class="bg-stone-900 text-stone-400 py-12 px-4 text-center">
-      <p class="mb-4">© 2026 Pizzeria Da Mario - Tutti i diritti riservati</p>
-      <div class="flex justify-center gap-6">
-        <a href="#" class="hover:text-white transition">Instagram</a>
-        <a href="#" class="hover:text-white transition">Facebook</a>
-      </div>
+    <footer class="bg-stone-900 text-stone-500 py-12 text-center border-t border-stone-800">
+      <p>© 2026 Da Mario Ristorante Pizzeria - Matera</p>
     </footer>
+
+    <script>
+      const carousel = document.getElementById('carousel');
+      if (carousel) {
+        const images = carousel.querySelectorAll('img');
+        let currentIndex = 0;
+        if (images.length > 1) {
+          setInterval(() => {
+            images[currentIndex].classList.replace('opacity-100', 'opacity-0');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.replace('opacity-0', 'opacity-100');
+          }, 4000);
+        }
+      }
+    </script>
   </body>
 </html>

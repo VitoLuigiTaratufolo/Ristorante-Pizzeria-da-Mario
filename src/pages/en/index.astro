@@ -1,15 +1,25 @@
 ---
 import Header from '../../components/Header.astro';
 import '../../styles/global.css';
+
+// Usiamo lo stesso array di immagini della versione italiana
+const nomiImmagini = [
+  'cialdamaterana.jpg',
+  'faveecicorie.jpg',
+  'pizzahero.jpg',
+  'orecchiettefunghiesalsiccia.jpg',
+  'pizzeMultiple.png'
+];
+
+const images = nomiImmagini.map(nome => `/immagini/immaginiCentrali/${nome}`);
 ---
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pizzeria Da Mario | Authentic Neapolitan Pizza</title>
+    <title>Da Mario | Traditional Restaurant & Pizzeria in Matera</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    
     <style>
       h1, h2 { font-family: 'Playfair Display', serif; }
       body { font-family: 'Inter', sans-serif; }
@@ -20,63 +30,65 @@ import '../../styles/global.css';
     <Header lang="en" />
 
     <main>
-      <section class="relative h-[80vh] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-          <img 
-            src="/immagini/pizza-hero.jpg" 
-            alt="Freshly baked pizza" 
-            class="w-full h-full object-cover brightness-[0.4]"
-          />
+      <section class="relative h-[85vh] flex items-center justify-center overflow-hidden bg-stone-900">
+        
+        <div class="absolute inset-0 z-0" id="carousel-en">
+          {images.map((src, index) => (
+            <img 
+              src={src} 
+              class={`absolute inset-0 w-full h-full object-cover brightness-[0.45] transition-opacity duration-[1500ms] ease-in-out ${index === 0 ? 'opacity-100' : 'opacity-0'}`}
+              alt="Da Mario Restaurant & Pizzeria Atmosphere Matera"
+            />
+          ))}
         </div>
 
-        <div class="relative z-10 text-center px-4 max-w-4xl">
-          <span class="text-red-500 font-bold uppercase tracking-widest mb-4 block">Tradition since 1990</span>
+        <div class="relative z-10 text-center px-4 max-w-5xl">
+          <span class="text-red-500 font-bold uppercase tracking-[0.3em] mb-4 block">
+            Lucanian Tradition since 1990
+          </span>
           <h1 class="text-5xl md:text-7xl text-white font-black mb-6 leading-tight">
-            Authentic pizza from our <span class="text-red-500">wood-fired oven</span>
+            The Authentic Taste of <span class="text-red-600">Matera's Cuisine</span>
           </h1>
-          <p class="text-xl text-stone-200 mb-10 max-w-2xl mx-auto font-light">
-            A genuine experience with over 170 seats in the heart of the city. 
-            Fresh ingredients, Neapolitan passion.
+          <p class="text-xl text-stone-200 mb-10 max-w-3xl mx-auto font-light leading-relaxed">
+            From the historic recipes of the Sassi di Matera to our wood-fired pizza. 
+            A unique experience for 170 guests in the heart of tradition.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/en/book" class="bg-red-600 hover:bg-red-700 text-white px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-red-900/20">
+            <a href="/en/book" class="bg-red-600 text-white px-10 py-4 rounded-full font-bold hover:bg-red-700 transition transform hover:scale-105 shadow-xl shadow-red-900/40">
               Book a Table
             </a>
-            <a href="/en/menu" class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-10 py-4 rounded-full font-bold transition-all">
-              Discover Menu
+            <a href="/en/menu" class="bg-white/10 backdrop-blur-md text-white border border-white/30 px-10 py-4 rounded-full font-bold hover:bg-white/20 transition">
+              View Menu
             </a>
           </div>
         </div>
       </section>
 
-      <section class="py-20 px-4 max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 class="text-4xl font-bold mb-6 text-stone-800">Spacious seating for every occasion</h2>
-            <p class="text-lg text-stone-600 mb-6 leading-relaxed">
-              Whether it's a romantic dinner or a big family party, our restaurant offers **170 seats** in cozy, air-conditioned rooms. 
-            </p>
-            <ul class="space-y-4 text-stone-700 font-medium">
-              <li class="flex items-center gap-3">
-                <span class="text-red-500">✔</span> Traditional wood-fired oven
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="text-red-500">✔</span> Large free parking
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="text-red-500">✔</span> Kids area and event space
-              </li>
-            </ul>
-          </div>
-          <div class="rounded-3xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
-            <img src="/immagini/interno-locale.jpg" alt="Restaurant interior" class="w-full h-full object-cover" />
-          </div>
-        </div>
+      <section class="py-20 px-4 max-w-7xl mx-auto text-center">
+        <h2 class="text-4xl font-bold mb-6 text-stone-800">More than Pizza, a Heritage</h2>
+        <p class="text-lg text-stone-600 max-w-3xl mx-auto leading-relaxed italic">
+          "We are not just a pizzeria. We bring the soul of Matera to your table, from Crunchy 'Crusco' Peppers to homemade pasta, served in a spacious and welcoming atmosphere."
+        </p>
       </section>
     </main>
 
-    <footer class="bg-stone-900 text-stone-400 py-12 px-4 text-center">
-      <p class="mb-4">© 2026 Pizzeria Da Mario - All rights reserved</p>
+    <footer class="bg-stone-900 text-stone-500 py-12 text-center border-t border-stone-800">
+      <p>© 2026 Da Mario Restaurant & Pizzeria - Matera</p>
     </footer>
+
+    <script>
+      const carouselEn = document.getElementById('carousel-en');
+      if (carouselEn) {
+        const images = carouselEn.querySelectorAll('img');
+        let currentIndex = 0;
+        if (images.length > 1) {
+          setInterval(() => {
+            images[currentIndex].classList.replace('opacity-100', 'opacity-0');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.replace('opacity-0', 'opacity-100');
+          }, 4000);
+        }
+      }
+    </script>
   </body>
 </html>
