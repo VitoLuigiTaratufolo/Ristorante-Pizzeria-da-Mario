@@ -4,56 +4,72 @@ import '../../styles/global.css';
 
 const categories = [
   {
-    title: "From the Kitchen",
+    title: "Matera's Traditional Kitchen",
     items: [
-      { name: "Seafood Spaghetti", desc: "Fresh Mediterranean seafood, cherry tomatoes, and parsley", price: "15.00" },
-      { name: "Grilled Sliced Beef", desc: "Served with rocket, parmesan shavings, and balsamic reduction", price: "18.00" },
+      { name: "Orecchiette al Tegamino", desc: "Homemade pasta with meat ragù, mozzarella, and local cheese, baked in a clay pot", price: "13.00" },
+      { name: "Matera's Crapiata", desc: "Traditional Sassi city soup with local legumes and cereals", price: "10.00" },
+      { name: "Cod & Crunchy Peppers", desc: "Salted cod served with Senise crunchy peppers (Cruschi)", price: "16.00" }
     ]
   },
   {
-    title: "Classic Pizzas",
+    title: "Wood-Fired Pizzeria",
     items: [
-      { name: "Margherita", desc: "San Marzano tomato, fior di latte mozzarella, fresh basil, EVO oil", price: "7.50" },
-      { name: "Marinara", desc: "Tomato, garlic, oregano, EVO oil", price: "6.00" },
-      { name: "Diavola", desc: "Tomato, mozzarella, spicy salami, black olives", price: "9.00" }
-    ]
-  },
-  {
-    title: "Gourmet Selection",
-    items: [
-      { name: "Pistachio", desc: "Pistachio pesto, mozzarella, Bologna mortadella, crushed pistachios", price: "13.00" },
-      { name: "Truffle", desc: "Truffle cream, porcini mushrooms, mozzarella, parmesan shavings", price: "14.50" }
+      { name: "The Lucanian", desc: "Tomato, mozzarella, crunchy peppers, and cacioricotta cheese", price: "12.00" },
+      { name: "Classic Margherita", desc: "San Marzano tomato, fior di latte, fresh basil", price: "7.50" }
     ]
   }
 ];
 ---
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <title>The Menu | Pizzeria Da Mario</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-</head>
-<body class="bg-stone-50">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu | Da Mario Restaurant & Pizzeria</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+      h1, h2 { font-family: 'Playfair Display', serif; }
+      body { font-family: 'Inter', sans-serif; }
+    </style>
+  </head>
+  <body class="bg-stone-50 text-stone-900">
     <Header lang="en" />
-    <main class="max-w-4xl mx-auto py-16 px-4">
-        <h1 class="text-5xl font-black text-center mb-16 text-stone-800">Our Menu</h1>
-        
-        {categories.map(cat => (
-            <div class="mb-12">
-                <h2 class="text-2xl font-bold text-red-600 border-b-2 border-red-100 pb-2 mb-8 uppercase tracking-widest">{cat.title}</h2>
-                <div class="grid gap-8">
-                    {cat.items.map(p => (
-                        <div class="flex justify-between items-start group">
-                            <div class="max-w-2xl">
-                                <h3 class="text-xl font-bold group-hover:text-red-600 transition">{p.name}</h3>
-                                <p class="text-stone-500 italic text-sm mt-1">{p.desc}</p>
+    
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        <div class="text-center mb-12 md:mb-20">
+            <span class="text-red-500 font-bold uppercase tracking-widest text-sm mb-2 block">Traditional Lucanian Flavors</span>
+            <h1 class="text-4xl md:text-6xl font-black text-stone-800 italic">Our Menu</h1>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+            {categories.map(cat => (
+                <div class="mb-16">
+                    <h2 class="text-2xl md:text-3xl font-bold text-red-600 border-b-2 border-red-100 pb-2 mb-8 uppercase tracking-tighter">
+                        {cat.title}
+                    </h2>
+                    <div class="space-y-10">
+                        {cat.items.map(p => (
+                            <div class="flex flex-col sm:flex-row justify-between items-baseline gap-2 group">
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold group-hover:text-red-600 transition duration-300">
+                                        {p.name}
+                                    </h3>
+                                    <p class="text-stone-500 italic text-sm mt-1 leading-relaxed pr-4">
+                                        {p.desc}
+                                    </p>
+                                </div>
+                                <span class="text-xl font-black text-stone-800 tabular-nums">
+                                    €{p.price}
+                                </span>
                             </div>
-                            <span class="text-xl font-black text-stone-800 italic">€{p.price}</span>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
-            </div>
-        ))}
+            ))}
+        </div>
     </main>
-</body>
+
+    <footer class="bg-stone-900 text-stone-500 py-12 text-center">
+      <p>© 2026 Da Mario Restaurant & Pizzeria - Matera</p>
+    </footer>
+  </body>
 </html>
