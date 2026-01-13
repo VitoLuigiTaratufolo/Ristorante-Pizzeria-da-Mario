@@ -1,0 +1,27 @@
+---
+const { lang } = Astro.props;
+const t = {
+  it: { menu: 'Menu', prenota: 'Prenota Tavolo', gallery: 'Foto' },
+  en: { menu: 'Menu', prenota: 'Book a Table', gallery: 'Gallery' }
+};
+const translations = lang === 'en' ? t.en : t.it;
+---
+<nav class="flex justify-between items-center p-6 bg-white shadow-md">
+  <div class="text-2xl font-bold text-red-600">PIZZERIA DA MARIO</div>
+  
+  <ul class="flex gap-6 items-center">
+    <li><a href={`/${lang}/menu`} class="hover:text-red-500">{translations.menu}</a></li>
+    <li><a href={`/${lang}/foto`} class="hover:text-red-500">{translations.gallery}</a></li>
+    <li>
+      <a href={`/${lang}/prenota`} class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">
+        {translations.prenota}
+      </a>
+    </li>
+    <li class="ml-4 border-l pl-4">
+      {lang === 'it' ? 
+        <a href="/en/" class="text-sm font-bold">EN 🇬🇧</a> : 
+        <a href="/it/" class="text-sm font-bold">IT 🇮🇹</a>
+      }
+    </li>
+  </ul>
+</nav>

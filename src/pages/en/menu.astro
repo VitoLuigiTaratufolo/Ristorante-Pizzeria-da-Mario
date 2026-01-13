@@ -1,0 +1,38 @@
+---
+import Header from '../../components/Header.astro';
+
+// Esempio di dati (poi potremo spostarli in un file esterno)
+const pizze = [
+  { nome: "Margherita", ingredienti: "Pomodoro, mozzarella, basilico", prezzo: "7.00" },
+  { nome: "Diavola", ingredienti: "Pomodoro, mozzarella, salame piccante", prezzo: "8.50" },
+  { nome: "Bufala", ingredienti: "Pomodoro, mozzarella di bufala, basilico", prezzo: "9.50" }
+];
+---
+<html lang="it">
+  <head>
+    <title>Il Nostro Menu | Pizzeria da Mario</title>
+  </head>
+  <body class="bg-gray-50">
+    <Header lang="en" />
+    
+    <main class="max-w-3xl mx-auto mt-10 p-4">
+      <h1 class="text-4xl font-bold text-center mb-10 text-red-600">Le Nostre Pizze</h1>
+      
+      <div class="grid gap-6">
+        {pizze.map((pizza) => (
+          <div class="flex justify-between items-center border-b border-gray-200 pb-4">
+            <div>
+              <h3 class="text-xl font-bold">{pizza.nome}</h3>
+              <p class="text-gray-600 italic">{pizza.ingredienti}</p>
+            </div>
+            <div class="text-xl font-bold text-red-700">€ {pizza.prezzo}</div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 p-6 bg-red-50 rounded-xl text-center">
+        <p class="text-sm text-gray-700">Per allergie o intolleranze, chiedete pure al nostro staff.</p>
+      </div>
+    </main>
+  </body>
+</html>

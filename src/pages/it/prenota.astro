@@ -1,0 +1,29 @@
+---
+import Header from '../../components/Header.astro';
+---
+<html lang="it">
+  <head>
+    <title>Prenota un Tavolo | Pizzeria da Mario</title>
+  </head>
+  <body class="bg-gray-50">
+    <Header lang="it" />
+    
+    <main class="max-w-4xl mx-auto mt-10 p-4">
+      <h1 class="text-4xl font-bold text-center mb-4">Prenota il tuo tavolo</h1>
+      <p class="text-center text-gray-600 mb-10">
+        Gestiamo fino a 170 coperti. Per gruppi superiori a 10 persone, consigliamo di chiamarci direttamente.
+      </p>
+
+      <div class="bg-white p-2 shadow-xl rounded-xl overflow-hidden">
+            <iframe
+                src="https://tableagent.com/iframe/ristorante-pizzeria-da-mario/"
+                style="border:0px none;min-width:375px;min-height:736px"
+                sandbox="allow-forms allow-modals allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
+                width="100%"
+                height="100%">
+            </iframe>
+      
+        </div>
+    </main>
+  </body>
+</html>

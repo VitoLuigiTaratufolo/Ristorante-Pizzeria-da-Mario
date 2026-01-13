@@ -1,0 +1,28 @@
+---
+import Header from '../../components/Header.astro';
+---
+<html lang="en">
+  <head>
+    <title>Book a table | Mario's Restaurant and Pizzeria</title>
+  </head>
+  <body class="bg-gray-50">
+    <Header lang="en" />
+    
+    <main class="max-w-4xl mx-auto mt-10 p-4">
+      <h1 class="text-4xl font-bold text-center mb-4">Book your table</h1>
+      <p class="text-center text-gray-600 mb-10">
+        We can accommodate up to 170 people. For groups of more than 10, we recommend contacting us directly.
+      </p>
+
+      <div class="bg-white p-2 shadow-xl rounded-xl overflow-hidden">
+        <iframe
+            src="https://tableagent.com/iframe/ristorante-pizzeria-da-mario/"
+            style="border:0px none;min-width:375px;min-height:736px"
+            sandbox="allow-forms allow-modals allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
+            width="100%"
+            height="100%">
+        </iframe>
+      </div>
+    </main>
+  </body>
+</html>
