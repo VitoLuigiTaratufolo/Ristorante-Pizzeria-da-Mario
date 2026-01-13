@@ -11,24 +11,32 @@ const pizze = [
 <html lang="it">
   <head>
     <title>Il Nostro Menu | Pizzeria da Mario</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+
+    <style>
+        h1, h2 { font-family: 'Playfair Display', serif; }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
   </head>
   <body class="bg-gray-50">
     <Header lang="it" />
     
     <main class="max-w-3xl mx-auto mt-10 p-4">
       <h1 class="text-4xl font-bold text-center mb-10 text-red-600">Le Nostre Pizze</h1>
-      
-      <div class="grid gap-6">
-        {pizze.map((pizza) => (
-          <div class="flex justify-between items-center border-b border-gray-200 pb-4">
-            <div>
-              <h3 class="text-xl font-bold">{pizza.nome}</h3>
-              <p class="text-gray-600 italic">{pizza.ingredienti}</p>
-            </div>
-            <div class="text-xl font-bold text-red-700">€ {pizza.prezzo}</div>
-          </div>
-        ))}
-      </div>
+        <div class="grid md:grid-cols-2 gap-8">
+            {pizze.map((pizza) => (
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-gray-800">{pizza.nome}</h3>
+                        <span class="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded">BIO</span>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-4">{pizza.ingredienti}</p>
+                    <div class="text-lg font-black text-red-600">€ {pizza.prezzo}</div>
+                </div>
+            ))}
+        </div>
 
       <div class="mt-12 p-6 bg-red-50 rounded-xl text-center">
         <p class="text-sm text-gray-700">Per allergie o intolleranze, chiedete pure al nostro staff.</p>
